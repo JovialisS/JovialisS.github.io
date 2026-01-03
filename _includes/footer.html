@@ -7,6 +7,22 @@
     flex-lg-row justify-content-lg-between align-items-lg-center pb-lg-3
   "
 >
+  <!--APlayer-->
+  <script src="https://cdn.jsdelivr.net/npm/vconsole/dist/vconsole.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/hls.js/dist/hls.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/color-thief-don@2.0.2/src/color-thief.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/meting@2.0.1/dist/Meting.min.js"></script>
+  <meting-js 
+    server="tencent" 
+    type="playlist" 
+    id="9641150678" 
+    autoplay="true" 
+    fixed="true"
+    loop="one"
+    volume="0.5">
+  </meting-js>
   <p>
     {{- '©' }}
     <time>{{ 'now' | date: '%Y' }}</time>
@@ -29,20 +45,5 @@
   </p>
 
   
-  <!--APlayer-->
-  <script src="https://cdn.jsdelivr.net/npm/vconsole/dist/vconsole.min.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/hls.js/dist/hls.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/color-thief-don@2.0.2/src/color-thief.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/meting@2.0.1/dist/Meting.min.js"></script>
-  <meting-js 
-    server="tencent" 
-    type="playlist" 
-    id="9641150678" 
-    autoplay="true" 
-    fixed="true"
-    loop="one"
-    volume="0.5">
-  </meting-js>
+  
 </footer>
