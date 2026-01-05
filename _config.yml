@@ -1,5 +1,6 @@
 # The Site Configuration
-
+permalink: /:year/:month/:day/:title/
+markdown: kramdown
 # Import the theme
 theme: jekyll-theme-chirpy
 
@@ -158,8 +159,6 @@ baseurl: ""
 kramdown:
   input: GFM
   auto_ids: true
-  # 尝试添加以下选项，保留非 ASCII 字符作为 ID
-  allow_non_ascii_ids: true
   footnote_backlink: "&#8617;&#xfe0e;"
   syntax_highlighter: rouge
   syntax_highlighter_opts: # Rouge Options › https://github.com/jneen/rouge#full-options
