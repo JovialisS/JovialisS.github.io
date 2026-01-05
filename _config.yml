@@ -1,6 +1,4 @@
 # The Site Configuration
-permalink: /:year/:month/:day/:title/
-markdown: kramdown
 # Import the theme
 theme: jekyll-theme-chirpy
 
@@ -157,8 +155,6 @@ baseurl: ""
 # ------------ The following options are not recommended to be modified ------------------
 
 kramdown:
-  input: GFM
-  auto_ids: true
   footnote_backlink: "&#8617;&#xfe0e;"
   syntax_highlighter: rouge
   syntax_highlighter_opts: # Rouge Options › https://github.com/jneen/rouge#full-options
