@@ -165,9 +165,6 @@ kramdown:
     block:
       line_numbers: true
       start_line: 1
-  input: GFM
-  # 确保自动生成 ID
-  auto_ids: true
 
 collections:
   tabs:
