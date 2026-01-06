@@ -1,32 +1,16 @@
-<!-- The Footer -->
+<!-- 这是一个标准的 Chirpy 页脚结构，包含了我们的中文目录修复脚本 -->
 
-<footer
-  aria-label="Site Info"
-  class="
-    d-flex flex-column justify-content-center text-muted
-    flex-lg-row justify-content-lg-between align-items-lg-center pb-lg-3
-  "
->
-  <p class="text-center text-muted">
-    {{- '©' }}
-    <time>{{ 'now' | date: '%Y' }}</time>
+<footer class="footer">
+  <div class="container">
+    <p class="text-center text-muted">
+      © {{ site.time | date: '%Y' }}
+      <a href="{{ site.url }}">{{ site.title }}</a>.
+      <br>
+      Powered by <a href="https://jekyllrb.com" target="_blank">Jekyll</a> &
+      <a href="https://github.com/cotes2020/jekyll-theme-chirpy" target="_blank">Chirpy</a>
+    </p>
+  </div>
 
-    {% if site.social.links %}
-      <a href="{{ site.social.links[0] }}">{{ site.social.name }}</a>.
-    {% else %}
-      <em class="fst-normal">{{ site.social.name }}</em>.
-    {% endif %}
-
-    {% if site.data.locales[include.lang].copyright.brief %}
-      <span
-        data-bs-toggle="tooltip"
-        data-bs-placement="top"
-        title="{{ site.data.locales[include.lang].copyright.verbose }}"
-      >
-        {{- site.data.locales[include.lang].copyright.brief -}}
-      </span>
-    {% endif %}
-  </p>
   <!-- 【中文目录修复脚本 - 极简稳定版】 -->
   <script>
   (function() {
@@ -56,7 +40,7 @@
       if (targetEl) {
         // 计算滚动位置
         // 56px 是导航栏高度，+20px 留点呼吸空间
-        var offset = 20 + 20; 
+        var offset = 56 + 20; 
         var top = targetEl.getBoundingClientRect().top + window.scrollY - offset;
 
         // 执行滚动
@@ -95,21 +79,4 @@
     }, 100); // 每 0.1 秒检查一次
   })();
   </script>
-  
-  <!--APlayer-->
-  <script src="https://cdn.jsdelivr.net/npm/vconsole/dist/vconsole.min.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/hls.js/dist/hls.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/color-thief-don@2.0.2/src/color-thief.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/meting@2.0.1/dist/Meting.min.js"></script>
-  <meting-js 
-    server="tencent" 
-    type="playlist" 
-    id="9641150678" 
-    autoplay="false" 
-    fixed="true"
-    loop="one"
-    volume="0.5">
-  </meting-js>
 </footer>
