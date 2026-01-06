@@ -1,82 +1,101 @@
-<!-- 这是一个标准的 Chirpy 页脚结构，包含了我们的中文目录修复脚本 -->
-
-<footer class="footer">
+<footer
+  aria-label="Site Info"
+  class="
+    d-flex flex-column justify-content-center text-muted
+    flex-lg-row justify-content-lg-between align-items-lg-center pb-lg-3
+  "
+>
   <div class="container">
-    <p class="text-center text-muted">
-      © {{ site.time | date: '%Y' }}
-      <a href="{{ site.url }}">{{ site.title }}</a>.
-      <br>
-      Powered by <a href="https://jekyllrb.com" target="_blank">Jekyll</a> &
-      <a href="https://github.com/cotes2020/jekyll-theme-chirpy" target="_blank">Chirpy</a>
-    </p>
+  <p class="text-center text-muted">
+    {{- '©' }}
+    <time>{{ 'now' | date: '%Y' }}</time>
+
+    {% if site.social.links %}
+      <a href="{{ site.social.links[0] }}">{{ site.social.name }}</a>.
+    {% else %}
+      <em class="fst-normal">{{ site.social.name }}</em>.
+    {% endif %}
+
+    {% if site.data.locales[include.lang].copyright.brief %}
+      <span
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        title="{{ site.data.locales[include.lang].copyright.verbose }}"
+      >
+        {{- site.data.locales[include.lang].copyright.brief -}}
+      </span>
+    {% endif %}
+  </p>
   </div>
 
-  <!-- 【中文目录修复脚本 - 极简稳定版】 -->
+  <!-- 【中文目录修复脚本 - 性能优化版 (Zero-Overhead)】 -->
   <script>
   (function() {
-    // 调试信息：看到这个说明脚本加载了
-    console.log(">>> TOC Fix: Script loaded. Waiting for tocbot... <<<");
+    // 性能优化版：不再轮询 tocbot，直接使用原生事件捕获拦截点击
+    // 这种方式对页面加载速度的影响为 0
+    
+    var TOC_ID = 'toc';
+    var SCROLL_OFFSET = 30; // 留白高度，可按需微调
 
-    // 1. 定义点击跳转逻辑
-    function fixClick(e) {
-      // 找到点击的链接
-      var link = e.target.closest('a');
-      if (!link) return;
+    function initTocFix() {
+      var toc = document.getElementById(TOC_ID);
       
-      var href = link.getAttribute('href');
-      // 只处理目录链接 (# 开头)
-      if (!href || !href.startsWith('#')) return;
+      // 如果页面没有目录，直接退出，不占用资源
+      if (!toc) return;
 
-      // 阻止默认行为 (这是关键，阻止 tocbot 乱跳)
-      e.preventDefault();
+      // 使用 { capture: true } 捕获模式
+      // 这意味着我们的函数会在 tocbot 插件收到点击事件之前运行
+      toc.addEventListener('click', function(e) {
+        var link = e.target.closest('a');
+        if (!link) return;
 
-      // 解码中文 ID (比如 "%E4%B8%AD" -> "中")
-      var targetId = decodeURIComponent(href.substring(1));
-      var targetEl = document.getElementById(targetId);
+        var href = link.getAttribute('href');
+        // 只处理内部锚点链接
+        if (!href || !href.startsWith('#')) return;
+
+        // 1. 阻止默认行为（阻止浏览器直接跳，也阻止 tocbot 处理）
+        e.preventDefault();
+        e.stopPropagation(); // 关键：停止事件传播，防止 tocbot 干扰
+
+        // 2. 解码中文 ID
+        var targetId = decodeURIComponent(href.substring(1));
+        var targetEl = document.getElementById(targetId);
+        // 兼容性查找
+        if (!targetEl) targetEl = document.getElementsByName(targetId)[0];
+
+        if (targetEl) {
+          // 3. 计算位置并平滑滚动
+          var top = targetEl.getBoundingClientRect().top + window.scrollY - SCROLL_OFFSET;
+          
+          window.scrollTo({
+            top: top,
+            behavior: 'smooth'
+          });
+
+          // 4. 手动更新 URL
+          history.pushState(null, null, href);
+
+          // 5. 辅助高亮（视觉反馈）
+          // 移除旧高亮
+          var activeLinks = toc.querySelectorAll('.is-active-link');
+          for (var i = 0; i < activeLinks.length; i++) {
+            activeLinks[i].classList.remove('is-active-link');
+          }
+          // 添加新高亮
+          link.classList.add('is-active-link');
+        }
+      }, true); // <--- true 表示捕获阶段，这非常重要！
       
-      // 备用：有时候 ID 里有空格或其他怪字符，尝试用 name 找
-      if (!targetEl) targetEl = document.getElementsByName(targetId)[0];
-
-      if (targetEl) {
-        // 计算滚动位置
-        // 56px 是导航栏高度，+20px 留点呼吸空间
-        var offset = 56 + 20; 
-        var top = targetEl.getBoundingClientRect().top + window.scrollY - offset;
-
-        // 执行滚动
-        window.scrollTo({ top: top, behavior: 'smooth' });
-
-        // 修改 URL (不刷新页面)
-        history.pushState(null, null, href);
-      } else {
-        console.warn("TOC Fix: Can't find element with ID:", targetId);
-      }
+      console.log(">>> TOC Fix: Capture interceptor attached. <<<");
     }
 
-    // 2. 等待 tocbot 插件加载完毕，然后注入我们的逻辑
-    var checkInterval = setInterval(function() {
-      var toc = document.querySelector('#toc');
-      
-      // 只有当 window.tocbot 存在，且目录里已经生成了 HTML 链接时，才开始干活
-      if (window.tocbot && toc && toc.querySelector('a')) {
-        clearInterval(checkInterval);
-        console.log(">>> TOC Fix: Tocbot found. Applying patch... <<<");
+    // 在 DOM 准备好后立即绑定，无需等待所有资源加载完成
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initTocFix);
+    } else {
+      initTocFix();
+    }
 
-        // 使用官方 API 刷新配置
-        tocbot.refresh({
-          tocSelector: '#toc',
-          contentSelector: '.content',
-          headingSelector: 'h2, h3, h4',
-          ignoreSelector: '[data-toc-skip]',
-          orderedList: false,
-          headingsOffset: 70, // 设置高亮感应区
-          scrollSmooth: false, // 【重要】关闭自带滚动，由我们接管
-          onClick: fixClick    // 【重要】注入上面的点击函数
-        });
-        
-        console.log(">>> TOC Fix: Patch applied successfully. <<<");
-      }
-    }, 100); // 每 0.1 秒检查一次
   })();
   </script>
 </footer>
