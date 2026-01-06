@@ -95,7 +95,7 @@ theme_mode: # [light | dark]
 # will be added to all media resources (site avatar, posts' images, audio and video files) paths starting with '/'
 #
 # e.g. 'https://cdn.com'
-cdn:   
+cdn:   # string, the CDN endpoint url
 
 
 # the avatar on sidebar, support local or CORS resources
@@ -225,3 +225,5 @@ jekyll-archives:
   permalinks:
     tag: /tags/:name/
     category: /categories/:name/
+
+google_fonts: "https://fonts.geekzu.org"
