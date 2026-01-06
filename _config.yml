@@ -225,5 +225,3 @@ jekyll-archives:
   permalinks:
     tag: /tags/:name/
     category: /categories/:name/
-
-google_fonts: "https://fonts.geekzu.org"
