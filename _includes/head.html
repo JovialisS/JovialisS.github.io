@@ -137,3 +137,6 @@
 
   {% include metadata-hook.html %}
 </head>
+{% if page.layout == 'post' %}
+  {% include toc-patch.html %}
+{% endif %}
