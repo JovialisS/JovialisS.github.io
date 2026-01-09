@@ -32,24 +32,27 @@
   );
 
   /* waline */
+  /* 常规颜色 */
   --waline-white: #000;
   --waline-light-grey: #666;
   --waline-dark-grey: #999;
+  // --waline-theme-color: #80a4dc;
+  // --waline-active-color: #4870d4;
+
+  /* 布局颜色 */
   --waline-color: #888;
-  --waline-bgcolor: rgb(25 25 32);
-  --waline-bgcolor-light: rgb(30 31 38);
-  --waline-bgcolor-hover: #444;
+  --waline-bg-color: #1e1e1e;
+  --waline-bg-color-light: #272727;
   --waline-border-color: #333;
-  --waline-disable-bgcolor: #444;
+  --waline-disable-bg-color: #444;
   --waline-disable-color: #272727;
+
+  /* 特殊颜色 */
   --waline-bq-color: #272727;
-  --waline-info-bgcolor: #272727;
+
+  /* 其他颜色 */
+  --waline-info-bg-color: #272727;
   --waline-info-color: #666;
-  --waline-theme-color: #4a84d9;
-  --waline-active-color: #98c4fe;
-  --waline-code-bgcolor: #282c34;
-  --waline-badge-color: #0ecf75;
-  --waline-box-shadow: 0 12px 40px #0f0e0d;
 
   /* Sidebar */
   --site-title-color: #717070;
