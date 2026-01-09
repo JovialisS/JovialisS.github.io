@@ -53,6 +53,10 @@ layout: compress
               {% assign _include_path = _include | append: '.html' %}
               {% include {{ _include_path }} lang=lang %}
             {% endfor %}
+             <!-- waline -->
+             {% if page.comments %}
+                 {% include comments/waline.html %}
+             {% endif %}
 
             {% include_cached footer.html lang=lang %}
           </div>
