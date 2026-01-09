@@ -31,6 +31,26 @@
     rgb(255 255 255 / 0%) 100%
   );
 
+  /* waline */
+  --waline-white: #000;
+  --waline-light-grey: #666;
+  --waline-dark-grey: #999;
+  --waline-color: #888;
+  --waline-bgcolor: rgb(25 25 32);
+  --waline-bgcolor-light: rgb(30 31 38);
+  --waline-bgcolor-hover: #444;
+  --waline-border-color: #333;
+  --waline-disable-bgcolor: #444;
+  --waline-disable-color: #272727;
+  --waline-bq-color: #272727;
+  --waline-info-bgcolor: #272727;
+  --waline-info-color: #666;
+  --waline-theme-color: #4a84d9;
+  --waline-active-color: #98c4fe;
+  --waline-code-bgcolor: #282c34;
+  --waline-badge-color: #0ecf75;
+  --waline-box-shadow: 0 12px 40px #0f0e0d;
+
   /* Sidebar */
   --site-title-color: #717070;
   --site-subtitle-color: #868686;
@@ -110,6 +130,8 @@
   --code-header-icon-color: #565656;
   --clipboard-checked-color: #2bcc2b;
   --filepath-text-color: #cacaca;
+
+
 
   .light {
     display: none;
@@ -296,6 +318,8 @@
   .highlight .mx {
     color: #90a959;
   }
+
+  
 
   .highlight .ss {
     color: #90a959;
