@@ -4,6 +4,7 @@ init({
     el: '#waline',
     serverURL: 'https://jovially.netlify.app/.netlify/functions/comment',
     comment: true,
+    reaction: true,
     texRenderer: (blockMode, tex) =>
     window.MathJax.startup.adaptor.outerHTML(
         window.MathJax.tex2svg(tex, {
