@@ -8,7 +8,9 @@ init({
     comment: true,
     reaction: true,
     search: false,
+    pageview: true, 
     lang: 'zh-CN',
+    avatar: 'monsterid',
     emoji: [
       '//unpkg.com/@waline/emojis@1.4.0/tieba',
       '//unpkg.com/@waline/emojis@1.4.0/bilibili',
