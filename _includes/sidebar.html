@@ -1,4 +1,6 @@
 <style>
+
+  
   /* ====== 1. 浅色模式 (Light Mode) ====== */
   /* 默认背景为白，链接变浅淡 */
   body .content a:not(.img-link):hover,
@@ -16,6 +18,21 @@
     text-decoration-color: rgb(138 180 248) !important;
     border-bottom-color: rgb(27 27 30) !important;
   }
+
+
+  /* ====== 3. Waline 评论区头像调整 ====== */
+  #waline .wl-user img,
+  #waline .wl-header img,
+  #waline img.wl-user-avatar {
+    /* 强制变圆 */
+    border-radius: 50% !important;
+    
+    /* 强制变小 - 确保宽和高数字一致 */
+    width: 45px !important;
+    height: 45px !important;
+
+    /* 保持图片比例，防止被压扁 */
+    object-fit: cover !important;
 </style>
 <!-- The Side Bar -->
 
