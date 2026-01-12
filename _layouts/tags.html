@@ -12,11 +12,26 @@ layout: page
   {% assign sorted_tags = tags | sort_natural %}
 
   {% for t in sorted_tags %}
+    
+    <!-- 1. 获取该标签下的所有文章 -->
+    {% assign tag_posts = site.tags[t] %}
+    
+    <!-- 2. 关键修改：使用过滤器直接筛选出不隐藏的文章 -->
+    {% assign visible_posts = tag_posts | where_exp: "item", "item.hidden != true" %}
+    
+    <!-- 3. 计算筛选后的数量 -->
+    {% assign visible_count = visible_posts | size %}
+
+    <!-- 4. 只有当数量大于 0 时才显示这个标签 -->
+    {% if visible_count > 0 %}
     <div>
       <a class="tag" href="{{ t | slugify | url_encode | prepend: '/tags/' | append: '/' | relative_url }}">
         {{ t -}}
-        <span class="text-muted">{{ site.tags[t].size }}</span>
+        <!-- 5. 显示正确的数量 -->
+        <span class="text-muted">{{ visible_count }}</span>
       </a>
     </div>
+    {% endif %}
+
   {% endfor %}
 </div>
