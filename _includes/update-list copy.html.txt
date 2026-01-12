@@ -4,16 +4,7 @@
 
 {% assign all_list = '' | split: '' %}
 
-
-
 {% for post in site.posts %}
-
-  <!-- 🔴 关键修改开始：如果是隐藏文章，直接跳过本次循环 -->
-  {% if post.hidden %}
-    {% continue %}
-  {% endif %}
-  <!-- 🔴 关键修改结束 -->
-  
   {% assign datetime = post.last_modified_at | default: post.date %}
 
   {% capture elem %}

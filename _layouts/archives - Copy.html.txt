@@ -8,12 +8,8 @@ layout: page
 {% assign df_strftime_m = site.data.locales[lang].df.archives.strftime | default: '/ %m' %}
 {% assign df_dayjs_m = site.data.locales[lang].df.archives.dayjs | default: '/ MM' %}
 
-<!-- 1. 这里是你定义的过滤变量，保留这行 -->
-{% assign posts = site.posts | where_exp: "item", "item.hidden != true" %} 
-
 <div id="archives" class="pl-xl-3">
-  <!-- 2. 关键修改：把 site.posts 改成 posts -->
-  {% for post in posts %}
+  {% for post in site.posts %}
     {% assign cur_year = post.date | date: '%Y' %}
 
     {% if cur_year != last_year %}
