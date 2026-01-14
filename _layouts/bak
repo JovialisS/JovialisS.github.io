@@ -5,7 +5,7 @@ panel_includes:
   - toc
 tail_includes:
   - related-posts
-  - post-nav
+  # 🔴 注意：我删除了 '- post-nav'，因为我们要在下面手动实现它，防止重复出现
 script_includes:
   - comment
 ---
@@ -35,22 +35,13 @@ script_includes:
           {% include datetime.html date=page.last_modified_at tooltip=true lang=lang %}
         </span>
       
-        <!-- 阅读量统计模块 -->
-      <!-- margin-left: 10px 用于和前面的日期拉开距离 -->
-      <span style="margin-left: 10px;">
-        
-        <!-- 1. 图标和文字 -->
-        <i class="far fa-eye"></i> <!-- 小眼睛图标 -->
-        <span>浏览量</span>          <!-- 这里写你想要的文字 -->
-        
-        <!-- 2. 具体的数字 (注意：class="waline-pageview-count" 只留给这个数字标签) -->
-        <span class="waline-pageview-count" data-path="{{ page.url }}">0</span>
-
-      </span>
-
+        <!-- 阅读量统计模块 (保留你的自定义代码) -->
+        <span style="margin-left: 10px;">
+          <i class="far fa-eye"></i> 
+          <span>浏览量</span>          
+          <span class="waline-pageview-count" data-path="{{ page.url }}">0</span>
+        </span>
       {% endif %}
-
-    
 
       {% if page.image %}
         {% capture src %}src="{{ page.image.path | default: page.image }}"{% endcapture %}
@@ -190,6 +181,61 @@ script_includes:
       {% include post-sharing.html lang=lang %}
     </div>
     <!-- .post-tail-bottom -->
+
+    <!-- 🔴 关键修改：手动实现“上一篇/下一篇”，并过滤 hidden 文章 -->
+    {% assign all_visible_posts = site.posts | where_exp: "item", "item.hidden != true" %}
+    {% assign next_post = nil %}
+    {% assign prev_post = nil %}
+
+    {% for post in all_visible_posts %}
+      {% if post.url == page.url %}
+        {% assign curr_index = forloop.index0 %}
+        
+        {% assign next_index = curr_index | minus: 1 %}
+        {% if next_index >= 0 %}
+          {% assign next_post = all_visible_posts[next_index] %}
+        {% endif %}
+
+        {% assign prev_index = curr_index | plus: 1 %}
+        {% if prev_index < all_visible_posts.size %}
+          {% assign prev_post = all_visible_posts[prev_index] %}
+        {% endif %}
+
+        {% break %}
+      {% endif %}
+    {% endfor %}
+
+    <nav class="post-navigation d-flex justify-content-between align-items-center mt-4">
+      {% if prev_post %}
+        <a
+          href="{{ prev_post.url | relative_url }}"
+          class="btn btn-outline-primary"
+          aria-label="Older"
+        >
+          <p>{{ prev_post.title }}</p>
+        </a>
+      {% else %}
+        <span class="btn btn-outline-primary disabled" aria-label="Older">
+          <p>{{ site.data.locales[lang].post.button.previous }}</p>
+        </span>
+      {% endif %}
+
+      {% if next_post %}
+        <a
+          href="{{ next_post.url | relative_url }}"
+          class="btn btn-outline-primary"
+          aria-label="Newer"
+        >
+          <p>{{ next_post.title }}</p>
+        </a>
+      {% else %}
+        <span class="btn btn-outline-primary disabled" aria-label="Newer">
+          <p>{{ site.data.locales[lang].post.button.next }}</p>
+        </span>
+      {% endif %}
+    </nav>
+    <!-- 🔴 结束修改 -->
+
   </div>
   <!-- div.post-tail-wrapper -->
 </article>
