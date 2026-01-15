@@ -10,7 +10,7 @@ init({
     search: false,
     pageview: true, 
     lang: 'zh-CN',
-    avatar: 'monsterid',
+    avatar: 'robohash',
     avatarCDN: 'https://cravatar.cn/avatar/',
     updateVisitor: window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1',
     emoji: [
