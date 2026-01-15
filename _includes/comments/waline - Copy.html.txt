@@ -38,7 +38,5 @@
 </style>
 
 <div id="waline">
-    <!-- <script type="module" src="/assets/js/waline_init.js"></script> -->
-    <script type="module" src="/assets/js/waline_init.js?v={{ site.time | date: '%s' }}"></script>
-
+    <script type="module" src="/assets/js/waline_init.js"></script>
 </div>
