@@ -155,6 +155,13 @@ baseurl: ""
 
 backgroud_animation : true # Enable the background animation effect
 
+csp:
+  enabled: true
+  # ... 其他设置 ...
+  script_src:
+    - "https://cdn.jsdelivr.net"
+    - "https://instant.page"  # <--- 加上这一行！
+
 # ------------ The following options are not recommended to be modified ------------------
 
 kramdown:
