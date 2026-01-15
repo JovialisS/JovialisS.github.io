@@ -89,6 +89,9 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ '/assets/css/:THEME.css' | replace: ':THEME', site.theme | relative_url }}">
 
+  <!-- 👇👇 新增：加载我的自定义补丁 (custom.css) 👇👇 -->
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+
   <!-- Web Font -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-pingfang-sc@1.0.5/index.min.css">
 
