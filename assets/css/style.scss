@@ -384,19 +384,42 @@
      10px (模糊半径，数值越大越柔和) 
      rgba(0, 0, 0, 0.1) (黑色，10%透明度，淡淡的影子最优雅)
   */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1) !important;
-  
+  //第一种方案：较轻的阴影效果
+  //box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1) !important;
+
+//   第二种方案：更明显的阴影效果
+    // box-shadow: 0 4px 25px rgba(0, 0, 0, 0.2) !important;
+    // transition: box-shadow 0.3s ease;
+
+    //第三种：四周均匀的阴影
+    /* 关键修改：把第二个数字改成 0 */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1) !important;
+    /* 配合稍微上浮的效果会更好看 */
+    // transform: translateY(-2px); 
+    // transition: all 0.3s ease;
+
   /* 建议搭配圆角，看起来更现代 */
-  border-radius: 8px !important;
+    border-radius: 8px !important;
   
   /* 这是一个小优化：防止图片本来就是透明底的(比如Logo)，加了方框阴影会很难看
      如果你有很多透明PNG，可以用 filter: drop-shadow 代替 box-shadow
      但 box-shadow 性能更好，大部分情况下够用了
   */
+  
 }
-
-/* (可选) 鼠标悬停时阴影加深，增加互动感 */
 .content img:hover {
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2) !important;
-  transition: box-shadow 0.3s ease;
+//   /* (可选) 鼠标悬停时阴影加深，增加互动感 */
+//     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2) !important;
+//     transition: box-shadow 0.3s ease;
+
+    /* 
+     修改点：
+     1. 模糊半径从 20px -> 30px (影子扩散开)
+     2. 透明度从 0.25 -> 0.5 (颜色变深一倍)
+  */
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.25) !important;
+  
+  /* 强烈建议加上这个，让变化过程像呼吸一样平滑，而不是闪烁 */
+  transition: box-shadow 0.3s ease-in-out !important;
+
 }
