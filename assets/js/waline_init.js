@@ -11,11 +11,12 @@ init({
     pageview: true, 
     lang: 'zh-CN',
     avatar: 'monsterid',
+    updateVisitor: window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1',
     emoji: [
       '//unpkg.com/@waline/emojis@1.4.0/tieba',
-      '//unpkg.com/@waline/emojis@1.4.0/bilibili',
       '//unpkg.com/@waline/emojis@1.4.0/weibo',
       '//unpkg.com/@waline/emojis@1.4.0/qq',
+      '//unpkg.com/@waline/emojis@1.4.0/bilibili',
     //   '//unpkg.com/@waline/emojis@1.4.0/tw-emoji',
     ],
     texRenderer: (blockMode, tex) =>
