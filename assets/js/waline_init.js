@@ -10,9 +10,6 @@ init({
     search: false,
     pageview: true, 
     lang: 'zh-CN',
-    avatar: 'monsterid',
-    avatarForce: true, 
-    avatarCDN: 'https://weavatar.com/avatar/',
     updateVisitor: window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1',
     emoji: [
       '//unpkg.com/@waline/emojis@1.4.0/tieba',
