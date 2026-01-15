@@ -11,6 +11,7 @@ init({
     pageview: true, 
     lang: 'zh-CN',
     avatar: 'monsterid',
+    avatarCDN: 'https://cravatar.cn/avatar/',
     updateVisitor: window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1',
     emoji: [
       '//unpkg.com/@waline/emojis@1.4.0/tieba',
