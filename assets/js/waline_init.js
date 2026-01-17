@@ -1,5 +1,6 @@
-import { init } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs';
+//import { init } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs';
 // import { init } from 'https://npm.elemecdn.com/@waline/client@v2/dist/waline.mjs';
+import { init } from 'https://cdn.jsdelivr.net/npm/@waline/client@v3/dist/waline.js';
 
 
 init({
