@@ -42,6 +42,26 @@
   --font-family-heading: 'MyLocalInter', -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
 }
 
+/* 3. 优化后的生效方式 */
+/* 这里的逻辑是：给 body 加上 !important 强制生效，
+   但不要给 span/div 加，让它们自然继承 body 的字体。
+   这样就不会误伤代码块和图标了。 */
+
+body {
+  font-family: var(--font-family-sans) !important;
+}
+
+/* 4. 安全防御（可选，但强烈建议） */
+/* 确保代码块仍然使用等宽字体，不被上面的规则带偏 */
+code, kbd, pre, samp {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace !important;
+}
+
+/* 确保图标字体不被覆盖 (FontAwesome) */
+.fa, .fas, .far, .fal, .fab {
+  font-family: "Font Awesome 6 Free", "Font Awesome 5 Free", FontAwesome !important;
+}
+
 /* 生成动画 */
 
 @keyframes infirot {
