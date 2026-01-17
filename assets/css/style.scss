@@ -1,10 +1,26 @@
 ---
 ---
 /* ⬆️ 这两行告诉 Jekyll：请把我编译成 CSS */
+@use "main";
+@use 'sass:math';
+/* ==========================================================
+   性能优化：让文字立即显示 (避免 FOIT)
+   ========================================================== */
+
+/* 针对所有使用自定义字体的元素 */
+@font-face {
+  font-family: 'Inter'; /* Chirpy 默认字体 */
+  font-display: swap;   /* 关键指令！ */
+}
+
+/* 暴力全局覆盖 (确保万无一失) */
+body, h1, h2, h3, h4, h5, h6, p, span, a {
+  font-display: swap;
+}
 
 /* 在这里你可以直接写 SCSS 语法（嵌套、变量），也可以写普通 CSS */
 /* 生成动画 */
-@use 'sass:math';
+
 @keyframes infirot {
     from {
       -webkit-transform: rotate(0deg);
@@ -81,6 +97,11 @@
       }
     }
   }
+
+
+
+
+
 
 //   /* colorbox 样式设计 */
 // /* 定义了 box-info, box-tip, box-warning, box-danger 四种 colorbox */
