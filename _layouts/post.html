@@ -35,19 +35,6 @@ script_includes:
           {% include datetime.html date=page.last_modified_at tooltip=true lang=lang %}
         </span>
       
-        <!-- 阅读量统计模块 -->
-      <!-- margin-left: 10px 用于和前面的日期拉开距离 -->
-      <span style="margin-left: 10px;">
-        
-        <!-- 1. 图标和文字 -->
-        <i class="far fa-eye"></i> <!-- 小眼睛图标 -->
-        <span>浏览量</span>          <!-- 这里写你想要的文字 -->
-        
-        <!-- 2. 具体的数字 (注意：class="waline-pageview-count" 只留给这个数字标签) -->
-        <span class="waline-pageview-count" data-path="{{ page.url }}">0</span>
-
-      </span>
-
       {% endif %}
 
     
