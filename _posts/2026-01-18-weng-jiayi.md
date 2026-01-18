@@ -2,7 +2,7 @@
 layout: post
 title: weng jiayi
 date: 2026-01-18 16:29 +0800
-description:
+description: 关于chatGPT的核心贡献者。
 categories: []
 tags: []
 pin: false
