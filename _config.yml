@@ -110,8 +110,8 @@ toc: true
 
 comments:
   # Global switch for the post-comment system. Keeping it empty means disabled.
-  provider: # [disqus | utterances | giscus]
-  active: false
+  provider: waline # [disqus | utterances | giscus]
+  # active: true
   # The provider options are as follows:
   disqus:
     shortname: # fill with the Disqus shortname. › https://help.disqus.com/en/articles/1717111-what-s-a-shortname
@@ -235,3 +235,40 @@ jekyll-archives:
   permalinks:
     tag: /tags/:name/
     category: /categories/:name/
+
+
+# ========================================
+# jekyll-compose 自动生成文章配置
+# ========================================
+jekyll_compose:
+  post:
+    defaults:
+      # ================= 1. 基础必填项 =================
+      layout: post                       # 布局，必须是 post
+       # 时间 (自动生成)
+      categories: []          # 分类 (Chirpy 建议最多两层：[大类, 小类])
+      tags: []           # 标签 (数量不限，全小写)
+
+      # ================= 2. 功能开关 (Boolean) =================
+      pin: false         # 【置顶】设为 true，文章会固定在首页最上方 (带图钉图标)
+      math: false        # 【数学公式】设为 true，支持渲染 $$ ... $$ 公式
+      mermaid: false     # 【流程图】设为 true，支持渲染 ```mermaid 代码块
+      toc: true          # 【目录】设为 true，文章右侧显示目录 (TOC)
+      comments: true     # 【评论】设为 true，开启评论区 (需先配置好评论插件)
+
+      # ================= 3. 图片与媒体 (Chirpy 特色) =================
+      # image:
+        # src: /assets/img/2026/cover.jpg  # 封面图路径 (支持 webp/jpg/png)
+        # alt: 图片描述                      # 图片无法显示时的文字 (SEO 友好)
+        # lqip: data:image/webp;base64...  # (可选) 模糊占位图的 Base64，用于预加载
+
+      # media_subpath: /assets/img/2026/   # (可选) 设置正文图片的默认前缀
+                                        # 设置后，正文只需写 ![图](1.jpg)
+
+      # ================= 4. SEO 与 元数据 (可选) =================
+      description: "这是一段简短的文章摘要..."  # 文章描述，用于 SEO 和首页预览文字
+      # author: Jovial                         # 指定作者 (如果不填，默认是 _config.yml 里的)
+
+      # ================= 5. 高级/特殊设置 =================
+      published: true      # 设为 false 则变成草稿，不会构建到网站上
+      # permalink: /custom/  # 自定义文章链接 (覆盖默认的日期链接)

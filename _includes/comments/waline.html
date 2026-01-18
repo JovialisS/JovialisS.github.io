@@ -1,7 +1,7 @@
 <!-- 1. 引入 Waline v3 官方补丁 CSS -->
-<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@waline/client@v3/dist/waline-meta.css" /> -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@waline/client@v3/dist/waline-meta.css" />
 
-<!-- <style>
+<style>
   /* ====== 1. 浅色模式 (Light Mode) ====== */
   /* 默认背景为白，链接变浅淡 */
   body .content a:not(.img-link):hover,
@@ -9,7 +9,7 @@
     color: #0056b2 !important;              /* 方案A：柔和蓝 */
     text-decoration-color: #0056b2 !important;
     border-bottom-color: #ffffff !important;
-  }
+  } 
 
   /* ====== 2. 深色模式 (Dark Mode) ====== */
   /* 只有当网页切换到深色时，这部分才会生效 */
@@ -38,7 +38,7 @@
 </style>
 
 <div id="waline">
-    <!-- <script type="module" src="/assets/js/waline_init.js"></script> -->
+    <script type="module" src="/assets/js/waline_init.js"></script>
     <script type="module" src="/assets/js/waline_init.js?v={{ site.time | date: '%s' }}"></script>
 
-</div> -->
+</div>

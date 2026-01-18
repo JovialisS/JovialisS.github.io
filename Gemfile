@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-source "https://rubygems.org"
+# source "https://rubygems.org"
+source "https://gems.ruby-china.com"
 
 gem "jekyll-theme-chirpy", "~> 7.4", ">= 7.4.1"
 
@@ -13,3 +14,4 @@ end
 
 gem "wdm", "~> 0.2.0", :platforms => [:mingw, :x64_mingw, :mswin]
 gem 'jekyll-compose', group: [:jekyll_plugins]
+# gem "jekyll-compose", "~> 0.22.0", group: [:jekyll_plugins]
